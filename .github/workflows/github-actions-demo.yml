@@ -1,18 +1,86 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+# Nome do workflow que aparecerá na aba "Actions" do GitHub
+name: CI - Taskflow API
+
+# Nome dinâmico da execução atual
+# github.actor -> usuário que disparou o workflow
+run-name: ${{ github.actor }} está testando a API com GitHub Actions
+
+# Eventos que irão disparar o workflow
+on:
+
+  # Executa quando houver push no repositório
+  push:
+
+  # Executa também em Pull Requests
+  pull_request:
+
+# Lista de jobs do workflow
 jobs:
-  Explore-GitHub-Actions:
+
+  # Nome interno do job
+  test-and-lint:
+
+    # Máquina virtual utilizada pelo GitHub Actions
     runs-on: ubuntu-latest
+
+    # Define configurações padrão para todos os comandos "run"
+    defaults:
+      run:
+
+        # Faz todos os comandos serem executados dentro dessa pasta
+        # Sem isso, os comandos rodariam na raiz do repositório
+        working-directory: 02_pratica/taskflow-api
+
+    # Passos que o job executará em sequência
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v6
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+
+      # Faz clone/download do repositório para dentro da máquina virtual
+      - name: Baixar código do repositório
+
+        # Action oficial do GitHub para checkout do código
+        uses: actions/checkout@v4
+
+      # Instala e configura o Python na máquina virtual
+      - name: Configurar Python
+
+        # Action oficial para instalar Python
+        uses: actions/setup-python@v5
+
+        # Configurações da action
+        with:
+
+          # Versão do Python que será utilizada
+          python-version: "3.11"
+
+      # Instala todas as dependências do projeto
+      - name: Instalar dependências
+
+        # Executa comando no terminal da máquina virtual
+        run: python -m pip install -r requirements.txt
+
+      # Executa os testes automatizados do projeto
+      - name: Rodar testes com coverage
+
+        # pytest -> executa testes
+        # --cov=app -> mede cobertura de testes da pasta app
+        run: pytest --cov=app
+
+      # Executa análise estática do código
+      - name: Rodar lint com Ruff
+
+        # Ruff procura:
+        # - imports errados
+        # - variáveis não usadas
+        # - problemas de estilo
+        # - possíveis erros simples
+        run: ruff check .
+
+      # Verifica se o código está formatado corretamente
+      - name: Verificar formatação com Black
+
+        # --check -> apenas verifica
+        # não altera arquivos
+        run: black --check .
+
+# OBS: Esse .yml é um exemplo de workflow que faz só a parte de CI, ou seja, ele automatiza instalar dependências, rodar testes e rodar lint. Ele é executado toda vez que houver um push ou um pull request no repositório. 
+# Para a parte de CD, teríamos outro workflow, que poderia ser disparado somente quando um pull request for aprovado, por exemplo, e ele geraria uma release no GitHub, ou publicaria a imagem Docker da API no Docker Hub, ou fizesse o deploy da API em um serviço de nuvem, etc. 
