@@ -3,7 +3,7 @@ name: Teste da Action personalizada
 
 # Nome dinâmico da execução atual
 # github.actor -> usuário que disparou o workflow
-run-name: ${{ github.actor }} está testando a API com GitHub Actions
+run-name: ${{ github.actor }} está testando a Action personalizada
 
 # Eventos que irão disparar o workflow
 on:
