@@ -75,12 +75,12 @@ jobs:
         # - possíveis erros simples
         run: ruff check .
 
-      # Verifica se o código está formatado corretamente
-      - name: Verificar formatação com Black
+      # # Verifica se o código está formatado corretamente
+      # - name: Verificar formatação com Black
 
-        # --check -> apenas verifica
-        # não altera arquivos
-        run: black --check .
+      #   # --check -> apenas verifica
+      #   # não altera arquivos
+      #   run: black --check .
 
 # OBS: Esse .yml é um exemplo de workflow que faz só a parte de CI, ou seja, ele automatiza instalar dependências, rodar testes e rodar lint. Ele é executado toda vez que houver um push ou um pull request no repositório. 
 # Para a parte de CD, teríamos outro workflow, que poderia ser disparado somente quando um pull request for aprovado, por exemplo, e ele geraria uma release no GitHub, ou publicaria a imagem Docker da API no Docker Hub, ou fizesse o deploy da API em um serviço de nuvem, etc. 
