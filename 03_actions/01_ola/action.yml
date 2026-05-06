@@ -1,0 +1,8 @@
+name: Minha Action
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: python3 githubActions-estudo/02_pratica/taskflow-api/teste.py
+      

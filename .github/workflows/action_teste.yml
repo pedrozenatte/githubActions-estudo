@@ -1,0 +1,30 @@
+# Nome do workflow que aparecerá na aba "Actions" do GitHub
+name: Teste da Action personalizada
+
+# Nome dinâmico da execução atual
+# github.actor -> usuário que disparou o workflow
+run-name: ${{ github.actor }} está testando a API com GitHub Actions
+
+# Eventos que irão disparar o workflow
+on:
+  workflow_dispatch: # Permite disparar o workflow manualmente pela aba "Actions" do GitHub
+  
+# Lista de jobs do workflow
+jobs: 
+
+  # Nome interno do job
+  test-action:
+
+    # Máquina virtual utilizada pelo GitHub Actions
+    runs-on: ubuntu-latest
+
+    # Passos que o job executará em sequência
+    steps:
+
+      # Faz clone/download do repositório para dentro da máquina virtual
+      - name: Baixar código do repositório
+
+      # Testa a action personalizada
+      - name: Teste manual
+        uses: githubActions-estudo/03_actions/01_ola/action.yml
+
