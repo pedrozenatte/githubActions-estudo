@@ -4,5 +4,5 @@ runs:
   using: composite
   steps:
     - shell: bash
-      run: python3 githubActions-estudo/02_pratica/taskflow-api/teste.py
+      run: python3 ${{ github.workspace }}/02_pratica/taskflow-api/teste.py
       
