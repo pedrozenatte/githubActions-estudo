@@ -273,3 +273,8 @@ Nesse exemplo:
 - Os testes são executados automaticamente
 
 ---
+
+## Referências de vídeos
+https://www.youtube.com/watch?v=F51HlrEeedw
+
+https://www.youtube.com/watch?v=df_WMXk7JxE&t=208s
