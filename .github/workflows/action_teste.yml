@@ -23,6 +23,7 @@ jobs:
 
       # Faz clone/download do repositório para dentro da máquina virtual
       - name: Baixar código do repositório
+        uses: actions/checkout@v4
 
       # Testa a action personalizada
       - name: Teste manual
