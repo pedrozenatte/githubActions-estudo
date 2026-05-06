@@ -26,5 +26,5 @@ jobs:
 
       # Testa a action personalizada
       - name: Teste manual
-        uses: githubActions-estudo/03_actions/01_ola/action.yml
+        uses: ./03_actions/01_ola
 
