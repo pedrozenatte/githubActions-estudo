@@ -39,3 +39,7 @@ Alguns exemplos são:
 - **Dependency upgrades**: atualização automática de dependências do projeto, como ocorre com ferramentas como `renovate`.
 
 Essas automações ajudam a manter o repositório mais organizado, atualizado e fácil de manter.
+
+
+## Referências 
+https://www.youtube.com/watch?v=Xwpi0ITkL3U
